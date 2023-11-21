@@ -22,28 +22,31 @@ export default function App() {
         setConvertedAmount(amount * currencyInfo[to]);
     }
     return (
-        <form onSubmit={e => {
-            e.preventDefault();
-            convert();
-        }}>
-            <InputBox
-                label="From"
-                amount={amount}
-                currencyOptions={options}
-                onCurrencyChange={setFrom}
-                selectCurrency={from}
-                onAmountChange={setAmount}
-            />
-            <button type="button" onClick={swap}>swap</button>
-            <InputBox
-                label="To"
-                amount={convertedAmount}
-                currencyOptions={options}
-                onCurrencyChange={setTo}
-                selectCurrency={to}
-                amountDisable
-            />
-            <button type="submit">Convert {from.toUpperCase()} to {to.toUpperCase()}</button>
-        </form>
+        <div id="formcontainer">
+            <form onSubmit={e => {
+                e.preventDefault();
+                convert();
+            }}>
+                <InputBox
+                    label="From"
+                    amount={amount}
+                    currencyOptions={options}
+                    onCurrencyChange={setFrom}
+                    selectCurrency={from}
+                    onAmountChange={setAmount}
+                />
+                <button id="swapbtn" type="button" onClick={swap}>swap</button>
+                <InputBox
+                    label="To"
+                    amount={convertedAmount}
+                    currencyOptions={options}
+                    onCurrencyChange={setTo}
+                    selectCurrency={to}
+                    amountDisable
+                />
+                <div>
+                    <button id="convertbtn" type="submit">Convert {from.toUpperCase()} to {to.toUpperCase()}</button></div>
+            </form>
+        </div>
     );
 }

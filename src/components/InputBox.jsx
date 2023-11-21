@@ -1,4 +1,5 @@
 import { useId } from "react";
+import './inputBox.css'
 
 export function InputBox({
     label, amount, onAmountChange,
@@ -7,27 +8,28 @@ export function InputBox({
 }) {
     const amountInputId = useId();
     return (
-        <div>
-            <label htmlFor={amountInputId}>{label}</label>
-            <input id={amountInputId} type="number" placeholder="Amount"
-                disabled={amountDisable} value={amount} onChange={e => {
+        <div className="inputbox">
+            <span className="labelinputcontainer">
+                <label htmlFor={amountInputId}>{label}</label>
+                <input type="number" className="boxinput" id={amountInputId} placeholder="Amount" disabled={amountDisable} value={amount} onChange={e => {
                     if (onAmountChange) {
                         onAmountChange(e.target.value);
                     }
                 }}
-            />
-            <div>
-                <p>Currency Type</p>
+                />
+            </span>
+            <span className="labelinputcontainer">
+                <label htmlFor='selectinput'>Currency</label>
                 <select value={selectCurrency} onChange={e => {
                     if (onCurrencyChange) {
                         onCurrencyChange(e.target.value);
                     }
-                }} disabled={currencyDisable}>
+                }} disabled={currencyDisable} className="boxinput" id="selectinput">
                     {currencyOptions.map(currency =>
-                        <option key={currency} value={currency}>{currency}</option>
+                        <option key={currency} value={currency}>{currency.toUpperCase()}</option>
                     )}
                 </select>
-            </div>
+            </span>
         </div>
     );
 }
